@@ -8,11 +8,30 @@ namespace Exercises02
 {
     public class Retangulo
     {
-        double Largura;
-        double Altura;
+        public double Largura;
+        public double Altura;
 
-        public double Area() { }
-        public double Perimetro() { }
-        public double Diagonal() { }
+        public double Area()
+        {
+            return Largura * Altura;
+        }
+        public double Perimetro()
+        {
+            return 2 * (Largura + Altura);
+        }
+        public double Diagonal()
+        {
+            return Math.Sqrt((Math.Pow(Largura, 2) + (Math.Pow(Altura, 2))));
+        }
+
+        public override string ToString()
+        {
+            return "Area ="
+                    + Area().ToString("F2")
+                    + "Perimetro ="
+                    + Perimetro().ToString("F2")
+                    + "Diagonal ="
+                    + Diagonal().ToString("F2");
+        }
     }
 }
