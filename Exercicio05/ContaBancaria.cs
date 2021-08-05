@@ -11,7 +11,7 @@ namespace Exercicio05
         private string _nome;
         public int Conta { get; set; }
         public double Saldo { get; private set; }
-        
+
         public string Nome
         {
             get { return _nome; }
@@ -31,10 +31,14 @@ namespace Exercicio05
             Nome = nome;
             Conta = conta;
         }
-
-        public Boolean CheckDeposit(string valid)
+        public ContaBancaria(string nome, int conta, double saldo) : this(nome, conta)
         {
-            if (valid.Equals("s"))
+            Saldo = saldo;
+        }
+
+        public Boolean CheckDeposit(char valid)
+        {
+            if (valid.Equals("s") || valid.Equals("S"))
             {
                 return true;
             }
@@ -46,15 +50,15 @@ namespace Exercicio05
 
         public void Deposit(double value)
         {
-            if(value > 0)
+            if (value > 0)
             {
                 Saldo += value;
             }
         }
 
-        public double Withdraw(double value)
+        public void Withdraw(double value)
         {
-            return  Saldo -= (value + 5.00);
+            Saldo -= (value + 5.00);
         }
 
         public override string ToString()

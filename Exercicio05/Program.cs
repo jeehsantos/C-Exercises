@@ -11,7 +11,7 @@ namespace Exercicio05
             Console.Write("Entre o Titular da conta: ");
             string nome = Console.ReadLine();
             Console.Write("Havera deposito inicial (s/n) ? ");
-            string deposito = Console.ReadLine();
+            char deposito = char.Parse(Console.ReadLine());
             ContaBancaria conta = new ContaBancaria(nome, numero);
 
             if (conta.CheckDeposit(deposito))
