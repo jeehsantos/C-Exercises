@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Exercise07
 {
@@ -7,38 +8,50 @@ namespace Exercise07
     {
         static void Main(string[] args)
         {
-            Console.Write("How many employees will be registered ? ");
-            int nEmployee = int.Parse(Console.ReadLine());
-            List<Employee> employee = new List<Employee>();
-            for (int i = 0; i < nEmployee; i++)
+            List<Product> product = new List<Product>();
+            Console.Write("Do you wanna include a new product  (s/n) ? ");
+            char answer = char.Parse(Console.ReadLine());
+            while (answer == 's' || answer == 'S')
             {
-                Console.WriteLine("Employee #{0}: ", i);
+                Console.WriteLine("Insert the following infos: ");
+                Console.WriteLine();
                 Console.Write("Id: ");
                 int id = int.Parse(Console.ReadLine());
-                Console.Write("Name: ");
-                string name = Console.ReadLine();
-                Console.Write("Salary: ");
-                double salary = double.Parse(Console.ReadLine());
-                employee.Add(new Employee(id, name, salary));
+                Console.Write("Brand: ");
+                string brand = Console.ReadLine();
+                Console.Write("Description: ");
+                string desc = Console.ReadLine();
+                Console.Write("Quantity: ");
+                int qty = int.Parse(Console.ReadLine());
+                product.Add(new Product(id, brand, desc, qty));
+
+                Console.Write("Do you wanna include a new product  (s/n) ? ");
+                answer = char.Parse(Console.ReadLine());
             }
-            Console.Write("Enter the employee id that will have salary increase: ");
-            int searchId = int.Parse(Console.ReadLine());
-            Employee emp = employee.Find(x => x.Id == searchId);
-            if (emp != null)
+            if (answer == 'n' || answer == 'N')
             {
-                Console.Write("Enter the percentage ");
-                double increase = double.Parse(Console.ReadLine());
-                emp.increaseSalary(increase);
+                Console.WriteLine();
+                Console.WriteLine("Current products: ");
+                int qty = product.Count();
+                Console.WriteLine("Total of products: " + qty);
+
+                if (qty > 0)
+                {
+                    foreach (Product obj in product)
+                    {
+                        Console.WriteLine(obj);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("You do not have any product registered !");
+                }
             }
-            else
-            {
-                Console.WriteLine("This Id does not exist !");
-            }
-            Console.WriteLine("Updated list of employees: ");
-            foreach (Employee x in employee)
-            {
-                Console.WriteLine(x);
-            }
+
+            Console.WriteLine("Type an product ID: ");
+            int idSearch = int.Parse(Console.ReadLine());
+            Product search = product.Find(x => x.Id == idSearch);
+            Console.WriteLine(search);
         }
     }
 }
