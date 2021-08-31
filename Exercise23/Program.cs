@@ -25,9 +25,9 @@ namespace Exercise23
 
             List<Products> products = new List<Products>
             {
-                new Products { Id = 1, Name = "Computer", Price = 1100.00, Category = category2},
+                new Products { Id = 1, Name = "Computer", Price = 2100.00, Category = category2},
                 new Products { Id = 2, Name = "Mobile", Price = 1100.00, Category = category3},
-                new Products { Id = 3, Name = "Mouse", Price = 1100.00, Category = category2},
+                new Products { Id = 3, Name = "Mouse", Price = 1600.00, Category = category2},
                 new Products { Id = 4, Name = "Monitor", Price = 1100.00, Category = category3},
                 new Products { Id = 5, Name = "Hammer", Price = 1100.00, Category = category1},
                 new Products { Id = 6, Name = "Saw", Price = 1100.00, Category = category1},
@@ -46,7 +46,19 @@ namespace Exercise23
             Print("Product ordered by name", r2);
 
             var r3 = products.Where(p => p.Category.Tier != 1).Select(p => new { p.Name, p.Price });
-            Print("Category different from Computers", r3); 
+            Print("Category different from Computers", r3);
+
+            var r4 = products.GroupBy(p => p.Category).OrderBy(p => p.Key.Tier);
+            foreach (IGrouping<Category, Products> group in r4)
+            {
+                Console.WriteLine("Category " + group.Key.Name + " : ");
+                foreach (Products product in group)
+                {
+                    Console.WriteLine(product);
+                }
+
+                Console.WriteLine();
+            }
         }
     }
 }

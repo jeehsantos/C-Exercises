@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exercise23.Entities
+namespace Exercise24
 {
-    class Category
+    class Product
     {
-        public int Id { get; set; }
         public string Name { get; set; }
-        public int Tier { get; set; }
+        public double Price { get; set; }
 
- 
+
     }
 }
