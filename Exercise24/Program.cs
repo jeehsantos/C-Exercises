@@ -31,7 +31,7 @@ namespace Exercise24
                 {
                     Console.WriteLine(p);
                 }
-            }
+            } 
             catch (Exception e)
             {
                 Console.WriteLine("Message: " + e.Message);
